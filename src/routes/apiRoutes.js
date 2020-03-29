@@ -1,6 +1,7 @@
 import {
     addNewContact,
-    getContacts
+    getContacts,
+    getContactWithID
 } from '../controllers/apiController';
 
 
@@ -16,6 +17,7 @@ const routes = (app) => {
         .post(addNewContact);
 
     app.route('/contact/:contactID')
+        .get(getContactWithID)
         .put((req, res) =>
             res.send('PUT request successful'))
 
