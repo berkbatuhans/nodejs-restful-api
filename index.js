@@ -1,16 +1,16 @@
 import express from 'express';
-import routes from './src/routes/nodeJSRoutes';
+import routes from './src/routes/apiRoutes';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 4000;
 
-mongoose.Promise = globel.Promise;
+mongoose.Promise = global.Promise;
 
 //mongose connection
 mongoose.connect('mongodb://localhost/CRMdb', {
-    useNewUrlParser = true,
+    useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
