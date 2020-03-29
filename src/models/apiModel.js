@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+
 
 const Schema = mongoose.Schema;
 
@@ -15,10 +15,6 @@ export const ContactSchema = new Schema({
     email: {
         type: String,
     },
-    hashPassword: {
-        type: String,
-        required: true
-    },
     company: {
         type: String,
     },
@@ -30,7 +26,3 @@ export const ContactSchema = new Schema({
         default: Date.now
     }
 });
-
-ContactSchema.method.comparePassword = (password, hashPassword) => {
-    return bcrypt.compareSync(password, hashPassword);
-};

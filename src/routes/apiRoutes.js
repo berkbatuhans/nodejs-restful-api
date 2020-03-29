@@ -6,6 +6,8 @@ import {
     deleteContact
 } from '../controllers/apiController';
 
+import { login, register, loginRequired } from '../controllers/userController';
+
 
 const routes = (app) => {
     app.route('/contact')
@@ -14,17 +16,25 @@ const routes = (app) => {
             console.log(`Request from: ${req.originalUrl}`)
             console.log(`Request type: ${req.method}`)
             next();
-        }, getContacts)
+        }, loginRequired, getContacts)
         // POST Endpoint
-        .post(addNewContact);
+        .post(loginRequired, addNewContact);
 
     app.route('/contact/:contactID')
         // GET a spesific contact
-        .get(getContactWithID)
+        .get(loginRequired, getContactWithID)
         // updating a specific contact
-        .put(updateContact)
+        .put(loginRequired, updateContact)
         // deleting a specific contact
-        .delete(deleteContact);
+        .delete(loginRequired, deleteContact);
+
+    // registration route
+    app.route('/auth/register')
+        .post(register);
+    
+    // login route
+    app.route('/login')
+        .post(login);
 }
 
 export default routes;
