@@ -2,7 +2,8 @@ import {
     addNewContact,
     getContacts,
     getContactWithID,
-    updateContact
+    updateContact,
+    deleteContact
 } from '../controllers/apiController';
 
 
@@ -14,15 +15,16 @@ const routes = (app) => {
             console.log(`Request type: ${req.method}`)
             next();
         }, getContacts)
-
+        // POST Endpoint
         .post(addNewContact);
 
     app.route('/contact/:contactID')
+        // GET a spesific contact
         .get(getContactWithID)
+        // updating a specific contact
         .put(updateContact)
-
-        .delete((req, res) =>
-            res.send('DELETE request successful'));
+        // deleting a specific contact
+        .delete(deleteContact);
 }
 
 export default routes;
